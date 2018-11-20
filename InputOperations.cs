@@ -33,7 +33,7 @@ namespace MarsPathFinder
             }
         }
 
-        public bool tryCreateNortheastPoint(string commanString, out Point northeastPoint)
+        public bool TryCreateNortheastPoint(string commanString, out Point northeastPoint)
         {
             Point tempPoint = new Point(0, 0);
             int[] coordinateValues;
