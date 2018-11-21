@@ -8,11 +8,11 @@ namespace MarsPathFinder
         {
             if (commandString is null)
                 return false;
+            CommandType commandType;
+
             foreach (char commandChar in commandString )
             {
-                if(!commandChar.Equals('R') && !commandChar.Equals('r') && 
-                    !commandChar.Equals('L') && !commandChar.Equals('l') &&
-                     !commandChar.Equals('M') && !commandChar.Equals('m') )
+                if(!Enum.TryParse(commandChar.ToString(),out commandType) )
                 
                     return false;
                 
@@ -29,12 +29,18 @@ namespace MarsPathFinder
 
             foreach (char commandChar in commandString)
             {
-                if (commandChar.Equals('L') || commandChar.Equals('l'))
-                    robot.Rotate('L');
-                else if (commandChar.Equals('R') || commandChar.Equals('r'))
-                    robot.Rotate('R');
-                else
+                CommandType commandType;
+
+                Enum.TryParse(commandChar.ToString(), out commandType);
+
+                if (commandType == CommandType.L)
+                    robot.RotateCounterClockwise();
+                else if (commandType == CommandType.R)
+                    robot.RotateClockwise();
+                //yeni komut eklenebilmesi için else yerine else if konuldu
+                else if (commandType == CommandType.M)
                     robot.Move();
+                
             }
         }
 
@@ -42,7 +48,7 @@ namespace MarsPathFinder
         {
 
             Point tempPoint = new Point(0, 0);
-            int[] coordinateValues;
+            int[] coordinateValues=new int[2];
 
             if (string.IsNullOrEmpty(input))
             {
@@ -83,7 +89,7 @@ namespace MarsPathFinder
         {
             Robot tempRobot = new Robot();
             CardinalDirection direction;
-            int[] coordinateValues;
+            int[] coordinateValues=new int[2];
 
             if (string.IsNullOrEmpty(input))
             {
@@ -118,11 +124,7 @@ namespace MarsPathFinder
                 }
             }
 
-            if(Enum.TryParse(tokens[2], out direction))
-            //if(tokens[2] != "W" && tokens[2] != "w" &&
-            //    tokens[2] != "E" && tokens[2] != "e" &&
-            //     tokens[2] != "S" && tokens[2] != "s" &&
-            //      tokens[2] != "N" && tokens[2] != "n")
+            if(!Enum.TryParse(tokens[2], out direction))
             {
                 Console.WriteLine("Wrong direction data");
                 robot = tempRobot;

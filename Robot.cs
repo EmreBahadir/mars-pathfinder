@@ -12,6 +12,7 @@
             currentDirection = startDirection;
             this.maxPoint = maxPoint;
         }
+        public Robot() { }
 
         public void Move()
         {
@@ -42,16 +43,9 @@
 
         }
 
-        public void Rotate(char command)
-        {
-            if (command == 'L')
-                RotateCounterClockwise();
-            else
-                RotateClockwise();
-        }
 
         //Turn right
-        private void RotateClockwise()
+        public void RotateClockwise()
         {
             if (currentDirection == CardinalDirection.W)
                 currentDirection = CardinalDirection.N;
@@ -60,12 +54,18 @@
         }
 
         //turn left 
-        private void RotateCounterClockwise()
+        public void RotateCounterClockwise()
         {
             if (currentDirection == CardinalDirection.N)
                 currentDirection = CardinalDirection.W;
             else
                 currentDirection--;
+        }
+
+        public void ShowCoordinate()
+        {
+            string result = string.Format("{0} {1} {2}",currentPoint.X.ToString(),currentPoint.Y.ToString(),currentDirection.ToString());
+            System.Console.WriteLine(result);
         }
     }
 }
