@@ -10,12 +10,12 @@ namespace MarsPathFinder
                 return false;
             CommandType commandType;
 
-            foreach (char commandChar in commandString )
+            foreach (char commandChar in commandString)
             {
-                if(!Enum.TryParse(commandChar.ToString(),out commandType) )
-                
+                if (!Enum.TryParse(commandChar.ToString(), out commandType))
+
                     return false;
-                
+
             }
             return true;
         }
@@ -40,7 +40,7 @@ namespace MarsPathFinder
                 //yeni komut eklenebilmesi için else yerine else if konuldu
                 else if (commandType == CommandType.M)
                     robot.Move();
-                
+
             }
 
             robot.PositionControl();
@@ -50,7 +50,7 @@ namespace MarsPathFinder
         {
 
             Point tempPoint = new Point(0, 0);
-            int[] coordinateValues=new int[2];
+            int[] coordinateValues = new int[2];
 
             if (string.IsNullOrEmpty(input))
             {
@@ -68,7 +68,7 @@ namespace MarsPathFinder
                 return false;
             }
 
-            for(int i=0;i<2;i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (!int.TryParse(tokens[i], out coordinateValues[i]))
                 {
@@ -91,7 +91,7 @@ namespace MarsPathFinder
         {
             Robot tempRobot = new Robot();
             CardinalDirection direction;
-            int[] coordinateValues=new int[2];
+            int[] coordinateValues = new int[2];
 
             if (string.IsNullOrEmpty(input))
             {
@@ -120,13 +120,13 @@ namespace MarsPathFinder
                 }
                 else if (coordinateValues[i] < 0 || coordinateValues[i] > (i == 0 ? northeastPoint.X : northeastPoint.Y))
                 {
-                    Console.WriteLine("Robot position must be between 0,0 and {0},{1}",northeastPoint.X,northeastPoint.Y);
+                    Console.WriteLine("Robot position must be between 0,0 and {0},{1}", northeastPoint.X, northeastPoint.Y);
                     robot = tempRobot;
                     return false;
                 }
             }
 
-            if(!Enum.TryParse(tokens[2], out direction))
+            if (!Enum.TryParse(tokens[2], out direction))
             {
                 Console.WriteLine("Wrong direction data");
                 robot = tempRobot;
@@ -134,7 +134,7 @@ namespace MarsPathFinder
             }
 
 
-            robot = new Robot(new Point(coordinateValues[0], coordinateValues[1]), direction,northeastPoint);
+            robot = new Robot(new Point(coordinateValues[0], coordinateValues[1]), direction, northeastPoint);
             return true;
         }
     }

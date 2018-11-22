@@ -10,17 +10,17 @@ namespace MarsPathFinder
             const int robotCount = 2;
             InputOperations operations = new InputOperations();
             Robot[] robots = new Robot[robotCount];
-            bool programIsFail=false;
+            bool programIsFail = false;
 
             Console.Write("Northeast point coordinate:");
 
             string northeastPointInput = Console.ReadLine();
 
-            if(operations.TryCreateNortheastPoint(northeastPointInput, out northeastPoint))
+            if (operations.TryCreateNortheastPoint(northeastPointInput, out northeastPoint))
             {
-                for(int i=0;i<robotCount;i++)
+                for (int i = 0; i < robotCount; i++)
                 {
-                    Console.Write("Robot{0} initial position:",i+1);
+                    Console.Write("Robot{0} initial position:", i + 1);
                     string robotCreationImput = Console.ReadLine().ToUpper();
                     if (operations.TryCreateRobot(robotCreationImput, out robots[i], northeastPoint))
                     {
@@ -43,12 +43,12 @@ namespace MarsPathFinder
                         programIsFail = true;
                         break;
                     }
-                        
+
                 }
                 if (!programIsFail)
                 {
                     ShowResult(robots);
-                }   
+                }
             }
             Console.ReadLine();
         }
@@ -56,7 +56,7 @@ namespace MarsPathFinder
         static void ShowResult(Robot[] robots)
         {
 
-            foreach(Robot robot in robots)
+            foreach (Robot robot in robots)
             {
                 robot.ShowCoordinate();
             }

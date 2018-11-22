@@ -6,7 +6,7 @@
         CardinalDirection currentDirection;
         readonly Point maxPoint;
 
-        public Robot(Point startPoint,CardinalDirection startDirection, Point maxPoint)
+        public Robot(Point startPoint, CardinalDirection startDirection, Point maxPoint)
         {
             currentPoint = startPoint;
             currentDirection = startDirection;
@@ -65,7 +65,7 @@
 
         public void ShowCoordinate()
         {
-            string result = string.Format("{0} {1} {2}",currentPoint.X.ToString(),currentPoint.Y.ToString(),currentDirection.ToString());
+            string result = string.Format("{0} {1} {2}", currentPoint.X.ToString(), currentPoint.Y.ToString(), currentDirection.ToString());
             System.Console.WriteLine(result);
         }
     }
