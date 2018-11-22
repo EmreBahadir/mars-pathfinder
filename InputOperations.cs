@@ -42,6 +42,8 @@ namespace MarsPathFinder
                     robot.Move();
                 
             }
+
+            robot.PositionControl();
         }
 
         public bool TryCreateNortheastPoint(string input, out Point northeastPoint)

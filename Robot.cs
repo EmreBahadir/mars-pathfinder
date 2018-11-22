@@ -25,11 +25,12 @@
             else
                 currentPoint.X--;
 
-            ControlCurrentpoint();
+            //this function must be call end of command input 
+            //PositionControl();
         }
 
         //if device cross the border, adjust device point   
-        private void ControlCurrentpoint()
+        public void PositionControl()
         {
             if (currentPoint.X > maxPoint.X)
                 currentPoint.X = maxPoint.X;
